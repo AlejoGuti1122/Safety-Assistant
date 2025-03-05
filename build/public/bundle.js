@@ -5,9 +5,107 @@
 /*!***********************************************!*\
   !*** ../02. JS Bases/generadorContrasenas.js ***!
   \***********************************************/
-/***/ (() => {
+/***/ ((module) => {
 
-throw new Error("Module parse failed: Unexpected token (18:6)\nYou may need an appropriate loader to handle this file type, currently no loaders are configured to process this file. See https://webpack.js.org/concepts#loaders\n|   var caracteresDisponibles = null;\n| \n>   if () {\n|       \n|   }");
+function checkLongitud(longitud) {
+  /* TU CODIGO */
+  if (!longitud) return "debe ingresar la longitud"
+  if (typeof longitud !== "string") return "La longitud recibida no es válida"
+  if (longitud < 3) return "La longitud debe ser mayor o igual a 3"
+  if (longitud > 10) return "La longitud debe ser menor o igual a 10"
+  return longitud
+}
+
+function generarContrasena(
+  longitud,
+  incluirEspeciales,
+  incluirNumeros,
+  incluirMayusculas
+) {
+  /* TU CODIGO */
+  var letras = "abcdefghijklmnopqrstuvwxyz"
+
+  var numeros = "0123456789"
+
+  var especiales = "!@#$%^&*()_+-=[]{}|;:,.<>?"
+
+  var letrasMayusculas = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+  var caracteresDisponibles = letras
+
+  if (incluirEspeciales) {
+    caracteresDisponibles = caracteresDisponibles + especiales
+  }
+
+  if (incluirNumeros) {
+    caracteresDisponibles = caracteresDisponibles + numeros
+  }
+
+  if (incluirMayusculas) {
+    caracteresDisponibles = caracteresDisponibles + letrasMayusculas
+  }
+
+  var contrasena = ""
+
+  if (longitud >= 3) {
+    var valorAleatorio = Math.random() * caracteresDisponibles.length
+
+    var valorEntero = Math.floor(valorAleatorio)
+
+    var caracter = caracteresDisponibles.charAt(valorEntero)
+    contrasena = contrasena + caracter
+
+    var valorAleatorio = Math.random() * caracteresDisponibles.length
+
+    var valorEntero = Math.floor(valorAleatorio)
+
+    var caracter = caracteresDisponibles.charAt(valorEntero)
+    contrasena = contrasena + caracter
+
+    var valorAleatorio = Math.random() * caracteresDisponibles.length
+
+    var valorEntero = Math.floor(valorAleatorio)
+
+    var caracter = caracteresDisponibles.charAt(valorEntero)
+    contrasena = contrasena + caracter
+  }
+
+  if (longitud >= 4) {
+    var valorAleatorio = Math.random() * caracteresDisponibles.length
+
+    var valorEntero = Math.floor(valorAleatorio)
+
+    var caracter = caracteresDisponibles.charAt(valorEntero)
+    contrasena = contrasena + caracter
+  }
+
+  if (longitud >= 5) {
+    var valorAleatorio = Math.random() * caracteresDisponibles.length
+
+    var valorEntero = Math.floor(valorAleatorio)
+
+    var caracter = caracteresDisponibles.charAt(valorEntero)
+    contrasena = contrasena + caracter
+  }
+
+  if (longitud >= 6) {
+    var valorAleatorio = Math.random() * caracteresDisponibles.length
+
+    var valorEntero = Math.floor(valorAleatorio)
+
+    var caracter = caracteresDisponibles.charAt(valorEntero)
+    contrasena = contrasena + caracter
+  }
+
+  return contrasena
+}
+
+// <------- NO TOCAR -------->
+module.exports = {
+  checkLongitud,
+  generarContrasena,
+}
+
 
 /***/ }),
 
@@ -17,30 +115,83 @@ throw new Error("Module parse failed: Unexpected token (18:6)\nYou may need an a
   \**************************************/
 /***/ ((module) => {
 
-function cajaFuerte(codigoSecreto, cantidadIntentos){
+function cajaFuerte(codigoSecreto, cantidadIntentos) {
   /* TU CODIGO */
-  
+  if (codigoSecreto.length !== 4)
+    return "El codigo debe tener exactamente 4 digitos"
+
+  for (var i = 0; i < codigoSecreto.length; i++) {
+    if (isNaN(codigoSecreto[i]))
+      return "El codigo secreto solo puede estar conformado por numeros"
+  }
+
+  if (validarNumerosRepetidos(codigoSecreto))
+    return "el codigo no puede tener numeros repetidos"
+
+  if (cantidadIntentos <= 0 || cantidadIntentos >= 6)
+    return "Solo se permite una cantidad de intentos mayor a 0 y menor a 6"
+
+  return codigoSecreto.toString() + cantidadIntentos.toString()
 }
 
-function validarNumerosRepetidos(codigo){
+function validarNumerosRepetidos(codigo) {
   /* TU CODIGO */
-  
+  for (var i = 0; i < codigo.length; i++) {
+    for (var j = i + 1; j < codigo.length; j++) {
+      if (codigo[i] === codigo[j]) return true
+    }
+  }
+  return false
 }
 
 // <------- Contador de intentos -----> no modificar
 var contadorIntentos = 1
 
-function desbloquearCajaFuerte(codigoSecreto, cantidadIntentos, codigoDesbloqueo){
+function desbloquearCajaFuerte(
+  codigoSecreto,
+  cantidadIntentos,
+  codigoDesbloqueo
+) {
   /* TU CODIGO */
-  
+  if (codigoDesbloqueo.length !== 4)
+    return "El codigo debe tener exactamente 4 digitos"
+
+  for (var i = 0; i < codigoDesbloqueo.length; i++) {
+    if (isNaN(codigoDesbloqueo[i]))
+      return "El codigo de desbloqueo solo puede estar conformado por numeros"
+  }
+
+  if (validarNumerosRepetidos(codigoDesbloqueo))
+    return "el codigo no puede tener numeros repetidos"
+
+  if (codigoSecreto === codigoDesbloqueo)
+    return "Acceso concedido despues de : " + contadorIntentos + " intentos"
+
+  switch (true) {
+    case codigoSecreto % 2 === 0:
+      console.log("el codigo es divisible x 2")
+      break
+    case codigoDesbloqueo > codigoSecreto:
+      console.log("Código incorrecto demasiado alto")
+      break
+    default:
+      console.log("codigo incorrecto")
+      break
+  }
+
+  contadorIntentos++
+
+  if (contadorIntentos > cantidadIntentos)
+    return "Acceso denegado. Se agotaron los intentos"
 }
 
 // <------- NO TOCAR -------->
 module.exports = {
   cajaFuerte,
   desbloquearCajaFuerte,
-  validarNumerosRepetidos
+  validarNumerosRepetidos,
 }
+
 
 /***/ }),
 
@@ -51,26 +202,74 @@ module.exports = {
 /***/ ((module) => {
 
 // <------- Arreglo de actividades sospechozas -----> modificar el valor de ser necesario
-var actividadesSospechozas = null
+var actividadesSospechozas = []
 
-function agregarActividad(descripcion, nivelRiesgo){
-    /* TU CODIGO */
-    
+function agregarActividad(descripcion, nivelRiesgo) {
+  /* TU CODIGO */
+  if (descripcion === "" || nivelRiesgo === "")
+    return "Descripcion o nivel de riego no valido"
+
+  if (
+    nivelRiesgo !== "bajo" &&
+    nivelRiesgo !== "medio" &&
+    nivelRiesgo !== "alto"
+  )
+    return "Nivel de riesgo no valido, el nivel debe ser: bajo, medio o alto"
+
+  actividadesSospechozas.push(
+    "Descripcion: " + descripcion + " Riesgo - " + nivelRiesgo
+  )
+  return (
+    "Actividad: " +
+    descripcion +
+    " con Nivel de riesgo " +
+    nivelRiesgo +
+    " fue agregada"
+  )
 }
 
-function eliminarActividad(indice){
-    /* TU CODIGO */
-    
+function eliminarActividad(indice) {
+  /* TU CODIGO */
+  if (typeof indice !== "number")
+    return "El indice no es valido, debe ser un numero"
+
+  if (indice < 0 || indice >= actividadesSospechozas.length)
+    return "El indice no es valido, se encuentra fuera del rango"
+
+  actividadesSospechozas.splice(indice, 1)
+  return "Actividad eliminada con exito"
 }
 
-function filtrarActividadesPorRiesgo(nivelRiesgo){
-    /* TU CODIGO */
-    
+function filtrarActividadesPorRiesgo(nivelRiesgo) {
+  /* TU CODIGO */
+  if (nivelRiesgo === "") return "Nivel de riesgo no valido"
+
+  if (
+    nivelRiesgo !== "bajo" &&
+    nivelRiesgo !== "medio" &&
+    nivelRiesgo !== "alto"
+  ) {
+    return "Nivel de riesgo no valido, el nivel debe ser: bajo, medio o alto"
+  }
+
+  var filtrado = actividadesSospechozas.filter((actividad) =>
+    actividad.includes("Riesgo - " + nivelRiesgo)
+  )
+
+  if (filtrado.length === 0)
+    return "No hay actividades con este nivel de riesgo"
+
+  return filtrado
 }
 
-function generarReporteDeActividades(){
-    /* TU CODIGO */
-    
+function generarReporteDeActividades() {
+  /* TU CODIGO */
+  const actividades = actividadesSospechozas.map(
+    (actividad, index) => "Id:" + index + " " + actividad
+  )
+
+  if (actividades.length === 0) return "No hay actividades para mostar"
+  return actividades
 }
 
 // <------- NO TOCAR -------->
@@ -78,12 +277,8 @@ module.exports = {
   agregarActividad,
   eliminarActividad,
   filtrarActividadesPorRiesgo,
-  generarReporteDeActividades
+  generarReporteDeActividades,
 }
-
-
-
-
 
 
 /***/ }),
@@ -98,32 +293,48 @@ module.exports = {
 const { perfiles } = __webpack_require__(/*! ../build/js/perfiles.js */ "./js/perfiles.js")
 
 var asistente = {
-    verPerfiles: function(opcion){
-        /* TU CODIGO */
-      
-    },
-    
-    verPerfilesPorAntiguedad: function(){
-        /* TU CODIGO */
-        
-    },
+  verPerfiles: function (opcion) {
+    /* TU CODIGO */
+    if (opcion === "todo") return perfiles
+    if (opcion === "nombre") return perfiles.map((perfil) => perfil.usuario)
+    if (opcion === "codigo") return perfiles.map((perfil) => perfil.codigo)
+    if (opcion === "nivel")
+      return perfiles.map((perfil) => perfil.nivel_de_autorizacion)
+    if (opcion == "antiguedad")
+      return perfiles.map((perfil) => perfil.antiguedad)
+  },
 
-    verAdministradores: function(){
-        /* TU CODIGO */
+  verPerfilesPorAntiguedad: function () {
+    /* TU CODIGO */
+    var perfilesPorAntiguedad = [...perfiles]
 
-    },
+    const ListaDePerfilesPorAntiguedad = perfilesPorAntiguedad.sort(
+      (a, b) => b.antiguedad - a.antiguedad
+    )
+    return ListaDePerfilesPorAntiguedad
+  },
 
-    modificarAcceso: function(usuario, codigo){
-        /* TU CODIGO */
-        
-    }
+  verAdministradores: function () {
+    /* TU CODIGO */
+    return perfiles.filter((perfil) => perfil.nivel_de_autorizacion === "admin")
+  },
+
+  modificarAcceso: function (usuario, codigo) {
+    /* TU CODIGO */
+    if (!perfiles.find((perfil) => perfil.usuario === usuario))
+      return "Usuario no encontrado"
+    if (codigo.length !== 4 || isNaN(Number(codigo)))
+      return "codigo de acceso invalido, debe contener solo 4 numeros"
+    const perfil = perfiles.find((perfil) => perfil.usuario === usuario)
+    perfil.codigo = codigo
+    return "codigo de acceso modificado"
+  },
 }
 
 // <----- NO TOCAR ------->
 module.exports = {
-    asistente
+  asistente,
 }
-
 
 
 /***/ }),

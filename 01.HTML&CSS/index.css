@@ -4,16 +4,16 @@
   height: 89px;
   display: flex;
   align-items: center;
-  justify-content: space-between; /* Añadido */
+  justify-content: space-between;
 }
 
-nav{
-    background-color: #f1f1f1;
-    width: 100%;
-    height: 89px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between; /* Añadido */
+nav {
+  background-color: #f1f1f1;
+  width: 100%;
+  height: 89px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 body {
@@ -41,16 +41,16 @@ body {
   font-size: 16px;
   margin-top: 21px;
   color: #222222;
-  text-decoration: none; /* Añadido */
-  padding: 0 12px; /* Añadido */
-  margin: 0; /* Eliminado margin-top negativo */
+  text-decoration: none;
+  padding: 0 12px;
+  margin: 0;
   margin-right: 24px;
   height: 32px;
   border-radius: 9px;
-  display: flex; /* Añadido */
-  align-items: center; /* Añadido */
+  display: flex;
+  align-items: center;
   justify-content: center;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .menu a:hover,
@@ -69,73 +69,71 @@ body {
 }
 
 .text {
-  font-size: 13px;
+  font-size: 16px;
+  font-weight: 500;
   color: #222222;
   margin-right: 24px;
   background-color: #f1f1f1;
-  width: 295px;
+  width: 324px;
   text-align: center;
   justify-content: center;
   align-items: center;
   display: flex;
   border-radius: 23px;
   height: 46px;
-  margin-top: -25px;
+  margin-top: 10px;
+  font-family: poppins;
 }
 
 .text2 {
   font-weight: 900;
-  font-size: 70px;
+  font-size: 90px;
   font-family: "Satoshi", sans-serif;
   margin-left: 135px;
-  margin-top: -8px;
+  margin-top: 10px;
 }
 
 .text3 {
   font-weight: 900;
-  font-size: 70px;
+  font-size: 90px;
   font-family: "Satoshi", sans-serif;
   margin-left: 115px;
   background-color: #ffff00;
-  width: 560px;
+  width: 608px;
   align-items: center;
   display: flex;
   justify-content: center;
   border-radius: 418px;
-  margin-top: -75px;
+  margin-top: -5px;
+  height: 117px;
 }
 
 .text4 {
   color: #676767;
-  font-size: 20px;
+  font-size: 30px;
   font-family: "Satoshi", sans-serif;
   font-weight: 500;
   margin-left: 135px;
   line-height: 1.2;
-  margin-top: -50px;
+  margin-top: 20px;
 }
-
 
 .container5 {
   position: absolute;
   right: 55px;
   top: 50%;
   transform: translateY(-50%);
-  width: 45%; /* Ajusta este valor según necesites */
+  width: 45%;
 }
 
 .image2 {
-  width: 500px;
-  height: auto;
-  height: 440px;
+  width: 501.55px;
+  height: 590px;
   object-fit: contain;
-  margin-top: 130px;
-  
-
-
+  margin-top: 288px;
+  margin-left: 90px;
 }
 
-/* Ajustamos el contenedor del texto para que no se superponga */
 .container2,
 .container3,
 .container4 {
