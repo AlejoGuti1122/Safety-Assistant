@@ -1,0 +1,22 @@
+{
+  "name": "pm0-alejoguti1122",
+  "version": "1.0.0",
+  "description": "Proyecto Módulo 0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pi-rym/PM0-AlejoGuti1122.git"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "jest": "^29.0.0",
+    "live-server": "^1.2.2"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
